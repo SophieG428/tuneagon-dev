@@ -106,7 +106,9 @@ export function defaultTuningConfig(): TuningConfig {
 }
 
 export function defaultFeelConfig(): FeelConfig {
-  return { velocityFloor: 20, velocityCurve: 1.0, pressureFloor: 20, digitalKeyVelocity: 100 };
+  // Light-touch defaults (keycaps): soft presses start at ~45% volume and the
+  // curve lifts light strikes. The MIT version used 20 / 1.0 / 20.
+  return { velocityFloor: 57, velocityCurve: 0.65, pressureFloor: 50, digitalKeyVelocity: 100 };
 }
 
 export function defaultAppConfig(): AppConfig {

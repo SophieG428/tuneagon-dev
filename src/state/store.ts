@@ -9,7 +9,11 @@ import {
   defaultPetalConfig,
 } from "./config";
 
-const STORAGE_KEY = "tunagon.config.v1";
+// Separate key from the MIT-submitted site (same github.io origin), so changes
+// here never touch that site's saved settings. On first load, petal setups and
+// tuning are copied (read-only) from the old key; feel uses the new defaults.
+const STORAGE_KEY = "tuneagon-dev.config.v1";
+const LEGACY_KEY = "tunagon.config.v1";
 
 class ConfigStore {
   private config: AppConfig;
@@ -22,9 +26,12 @@ class ConfigStore {
 
   private load(): AppConfig {
     try {
-      const raw = localStorage.getItem(STORAGE_KEY);
+      let raw = localStorage.getItem(STORAGE_KEY);
+      let fromLegacy = false;
+      if (!raw) { raw = localStorage.getItem(LEGACY_KEY); fromLegacy = raw != null; }
       if (raw) {
         const parsed = JSON.parse(raw) as Partial<AppConfig>;
+        if (fromLegacy) delete parsed.feel;
         // Shallow-merge onto defaults for forward compatibility.
         const base = defaultAppConfig();
         return {

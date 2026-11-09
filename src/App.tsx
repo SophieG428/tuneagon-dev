@@ -9,6 +9,7 @@ import { setPresent } from "./state/liveState";
 import { PetalGrid } from "./ui/PetalGrid";
 import { PetalEditor } from "./ui/PetalEditor";
 import { TuningControls } from "./ui/TuningControls";
+import { TouchControls } from "./ui/TouchControls";
 import { TuningReadout } from "./ui/TuningReadout";
 import { HubStatus } from "./ui/HubStatus";
 import { Logo } from "./ui/Logo";
@@ -245,6 +246,7 @@ export default function App() {
       {state === "ready" && (
         <>
           <TuningControls />
+          <TouchControls />
           <PetalGrid config={config} onSelect={setSelectedPetal} />
           <TuningReadout />
           <DevPanel onReplay={handleReplay} onToggleRecord={handleToggleRecord} />

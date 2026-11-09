@@ -667,3 +667,9 @@ button:disabled {
   flex: none;
   filter: drop-shadow(0 2px 6px rgba(126, 20, 255, 0.35));
 }
+
+.touch-title {
+  font-size: 13px;
+  color: var(--text);
+  min-width: 48px;
+}
